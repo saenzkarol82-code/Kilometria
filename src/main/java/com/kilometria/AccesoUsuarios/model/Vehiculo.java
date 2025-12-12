@@ -1,7 +1,7 @@
 package com.kilometria.AccesoUsuarios.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "vehiculos")
@@ -17,7 +17,7 @@ public class Vehiculo {
     @Column(nullable = false, length = 50)
     private String modelo;
 
-    @Column(nullable = false, precision = 12, scale = 2)
+    @Column(nullable = false)
     private Double precio;
 
     @Column

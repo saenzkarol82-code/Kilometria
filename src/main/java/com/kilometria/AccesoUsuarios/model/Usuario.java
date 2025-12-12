@@ -75,7 +75,7 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getPasswor() {
+    public String getPassword() {
         return password;
     }
 
@@ -107,7 +107,7 @@ public class Usuario {
         this.vehiculos = vehiculos;
     }
 
-   
+    
 
 }
 

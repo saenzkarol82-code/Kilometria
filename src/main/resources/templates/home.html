@@ -1,0 +1,37 @@
+<section class="hero text-center">
+  <div class="container">
+    <h1 class="fw-bold">Bienvenido, [[${nombre}]] [[${apellido}]]</h1>
+    <p class="lead">Tu rol: [[${rol}]]</p>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-4">Tu Perfil</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card p-4">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Email:</strong> [[${email}]]</li>
+            <li class="list-group-item"><strong>Teléfono:</strong> [[${telefono}]]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 text-center">
+  <div class="container">
+    <h2 class="section-title mb-4">Acciones Disponibles</h2>
+    <div th:if="${rol.contains('ADMIN')}">
+      <a href="/admin/dashboard" class="btn btn-primary">Panel de Administración</a>
+    </div>
+    <div th:if="${rol.contains('VENDEDOR')}">
+      <a href="/vehiculos/nuevo" class="btn btn-primary">Publicar Vehículo</a>
+    </div>
+    <div th:if="${rol.contains('COMPRADOR')}">
+      <a href="/catalogo" class="btn btn-primary">Explorar Catálogo</a>
+    </div>
+  </div>
+</section>

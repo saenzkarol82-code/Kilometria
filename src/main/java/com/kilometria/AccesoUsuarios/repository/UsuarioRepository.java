@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     // Ejemplo de query personalizada
     Usuario findByEmail(String email);
+    
 }
