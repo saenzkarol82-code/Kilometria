@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 
 
 @Controller
-@RequestMapping("/vehiculos")
 public class VehiculoController {
 
     private final VehiculoRepository vehiculoRepository; //aqui llama a el repo
@@ -24,22 +23,17 @@ public class VehiculoController {
         this.vehiculoRepository = vehiculoRepository; //declara variable privada
     }
 
-    @GetMapping("/nuevo") 
-    public String mostrarFormulario(Model model) {
-        model.addAttribute("vehiculo", new Vehiculo());
-        return "vehiculo-form"; // formulario para publicar
-    }
 
     @PostMapping("/nuevo")
     public String publicarVehiculo(@ModelAttribute Vehiculo vehiculo, Principal principal) {
         // aquí puedes asociar el vehículo al usuario autenticado
         vehiculoRepository.save(vehiculo);
-        return "redirect:/vehiculos/lista";
+        return "redirect:/admin/vehiculos";
     }
 
     @GetMapping("/lista")
     public String listarVehiculos(Model model) {
         model.addAttribute("vehiculos", vehiculoRepository.findAll());
-        return "vehiculos-lista"; // vista con todos los vehículos
+        return "vehiculos"; // vista con todos los vehículos
     }
 }

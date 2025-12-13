@@ -37,11 +37,6 @@ public class AdminController {
      return "admin-usuarios";
     }
 
-    @GetMapping("/vehiculos")
-    public String verVehiculos(Model model) {
-        model.addAttribute("vehiculos", vehiculoRepository.findAll());
-        return "admin-vehiculos"; // vista exclusiva admin
-    }
 
     
 

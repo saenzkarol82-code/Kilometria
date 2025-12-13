@@ -26,6 +26,8 @@
 </section>
 
 <div class="container my-5">
+    <a th:href="@{/admin/vehiculos/nuevo}" class="btn btn-success">Nuevo Vehículo</a>
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -38,6 +40,7 @@
                 <th>Estado</th>
                 <th>Disponible</th>
                 <th>Propietario</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -51,7 +54,13 @@
                 <td th:text="${v.estado}"></td>
                 <td th:text="${v.disponible ? 'Sí' : 'No'}"></td>
                 <td th:text="${v.usuario.email}"></td>
+                <td>
+                  <a th:href="@{'/admin/vehiculos/editar/' + ${v.idVehiculo}}" class="btn btn-primary btn-sm">Editar</a>
+                  <a th:href="@{'/admin/vehiculos/eliminar/' + ${v.idVehiculo}}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+
             </tr>
+
         </tbody>
     </table>
 </div>

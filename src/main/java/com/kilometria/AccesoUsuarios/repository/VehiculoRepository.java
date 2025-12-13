@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface VehiculoRepository extends JpaRepository<Vehiculo, Long> {
     // Ejemplo de query personalizada
-    List<Vehiculo> findByMarca(String marca);
-    List<Vehiculo> findByDisponibleTrue();
+   // List<Vehiculo> findByMarca(String marca);
+  //  List<Vehiculo> findByDisponibleTrue();
 }

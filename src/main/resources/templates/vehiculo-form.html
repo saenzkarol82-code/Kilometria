@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${vehiculo.idVehiculo == null} ? 'Nuevo Vehículo' : 'Editar Vehículo'">Formulario Vehículo</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/home}">Kilometría</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/vehiculos}">Vehículos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/usuarios}">Usuarios</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero text-center">
+    <h2 class="section-title text-center" th:if="${vehiculo != null and vehiculo.idVehiculo == null}">Nuevo Vehículo</h2>
+   <h2 class="section-title text-center" th:if="${vehiculo != null and vehiculo.idVehiculo != null}">Editar Vehículo</h2>
+
+    <p>Completa la información del vehículo</p>
+</section>
+
+<!-- FORMULARIO -->
+<div class="container my-5">
+
+    <form th:action="@{/admin/vehiculos/guardar}" th:object="${vehiculo}" method="post" class="card p-4">
+
+        <input type="hidden" th:field="*{idVehiculo}">
+
+        <div class="mb-3">
+            <label class="form-label">Marca</label>
+            <input type="text" th:field="*{marca}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Modelo</label>
+            <input type="text" th:field="*{modelo}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Precio</label>
+            <input type="number" step="0.01" th:field="*{precio}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Kilometraje</label>
+            <input type="number" th:field="*{kilometraje}" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tipo</label>
+            <select th:field="*{tipo}" class="form-control">
+                <option th:each="t : ${tipos}" th:value="${t}" th:text="${t}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Estado</label>
+            <select th:field="*{estado}" class="form-control">
+                <option th:each="e : ${estados}" th:value="${e}" th:text="${e}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea th:field="*{descripcion}" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" th:field="*{disponible}" class="form-check-input">
+            <label class="form-check-label">Disponible</label>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Propietario</label>
+            <select th:field="*{usuario}" class="form-control">
+             <option th:each="u : ${usuarios}" 
+               th:value="${u.idUsuario}" 
+               th:text="${u.email}">
+              </option>
+           </select>
+
+
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+        <a th:href="@{/admin/vehiculos}" class="btn btn-secondary mt-3 ms-2">Cancelar</a>
+
+    </form>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="text-center py-3">
+    © 2025 Kilometría — Todos los derechos reservados
+</footer>
+
+</body>
+</html>
