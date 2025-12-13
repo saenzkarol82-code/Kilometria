@@ -4,6 +4,7 @@ package com.kilometria.AccesoUsuarios.controller;
 import com.kilometria.AccesoUsuarios.model.*;
 import com.kilometria.AccesoUsuarios.repository.*;
 import com.kilometria.AccesoUsuarios.service.UsuarioService;
+import com.kilometria.AccesoUsuarios.service.VehiculoService;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,15 +20,18 @@ import org.springframework.ui.Model;
 @Controller
 public class UsuarioController {
 
-    public UsuarioController(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
+    public UsuarioController(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, VehiculoService vehiculoService) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
+        this.vehiculoService = vehiculoService;
     }
 
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
-    private UsuarioService usuarioService;
+    private final VehiculoService vehiculoService;
 
+
+   
 
 
     @GetMapping("/login")
@@ -35,16 +39,19 @@ public class UsuarioController {
     return "login"; // login.html en templates este es del boton iniciar sesion 
     }
     
-    @GetMapping("/home")  //home de usuarios y de admin 
-    public String home() {
-    return "home";
-    }
 
     @GetMapping("/registro") //accion mostrar el formulario de registro
     public String mostrarRegistroForm(Model model) {
         model.addAttribute("usuario", new Usuario());
         return "registro"; // registro.html
     }
+
+    @GetMapping("/catalogo")
+    public String catalogo(Model model) {
+    model.addAttribute("vehiculos", vehiculoService.listarPublicados());
+    return "catalogo";
+    }
+
      
    
 

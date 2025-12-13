@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel del Cliente - Kilometría</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/home}">Kilometría</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/cliente/vehiculos/mis-publicaciones}">Mis vehículos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/cliente/vehiculos/nuevo}">Publicar vehículo</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero text-center">
+    <h1 class="section-title">Bienvenido a Kilometría</h1>
+    <p>Gestiona tus vehículos publicados de forma rápida y sencilla</p>
+</section>
+
+<!-- PANEL -->
+<div class="container my-5">
+
+    <div class="row">
+
+        <!-- Publicar vehículo -->
+        <div class="col-md-6 mb-4">
+            <div class="card p-4 text-center">
+                <h3>Publicar vehículo</h3>
+                <p>Sube un nuevo vehículo para que los administradores lo revisen.</p>
+                <a th:href="@{/cliente/vehiculos/nuevo}" class="btn btn-primary">Publicar</a>
+            </div>
+        </div>
+
+        <!-- Mis publicaciones -->
+        <div class="col-md-6 mb-4">
+            <div class="card p-4 text-center">
+                <h3>Mis vehículos</h3>
+                <p>Consulta, edita o elimina tus vehículos publicados.</p>
+                <a th:href="@{/cliente/vehiculos/mis-publicaciones}" class="btn btn-secondary">Ver mis vehículos</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="text-center py-3">
+    © 2025 Kilometría — Todos los derechos reservados
+</footer>
+
+</body>
+</html>

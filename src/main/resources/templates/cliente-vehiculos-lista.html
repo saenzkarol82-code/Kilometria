@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Vehículos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<!-- NAVBAR CLIENTE -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/home}">Kilometría</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/cliente/vehiculos/nuevo}">Publicar vehículo</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero text-center">
+    <h2 class="section-title text-center">Mis vehículos publicados</h2>
+    <p>Aquí puedes ver, editar o eliminar tus publicaciones</p>
+</section>
+
+<!-- LISTA -->
+<div class="container my-5">
+
+    <a th:href="@{/cliente/vehiculos/nuevo}" class="btn btn-success mb-3">Publicar nuevo vehículo</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Precio</th>
+                <th>Kilometraje</th>
+                <th>Tipo</th>
+                <th>Estado</th>
+                <th>Disponible</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="v : ${vehiculos}">
+                <td th:text="${v.idVehiculo}"></td>
+                <td th:text="${v.marca}"></td>
+                <td th:text="${v.modelo}"></td>
+                <td th:text="${v.precio}"></td>
+                <td th:text="${v.kilometraje}"></td>
+                <td th:text="${v.tipo}"></td>
+                <td th:text="${v.estado}"></td>
+                <td th:text="${v.disponible ? 'Sí' : 'No'}"></td>
+
+                <td>
+                    <a th:href="@{'/cliente/vehiculos/editar/' + ${v.idVehiculo}}" class="btn btn-primary btn-sm">Editar</a>
+                    <a th:href="@{'/cliente/vehiculos/eliminar/' + ${v.idVehiculo}}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="text-center py-3">
+    © 2025 Kilometría — Todos los derechos reservados
+</footer>
+
+</body>
+</html>
