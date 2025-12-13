@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar sesión</title>
+
+    <!-- Tu CSS global -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+        <h2 class="login-title">Iniciar sesión</h2>
+
+        <!-- Mensaje de error -->
+        <div th:if="${param.error}" class="login-error">
+            Usuario o contraseña incorrectos
+        </div>
+
+        <!-- Mensaje de logout -->
+        <div th:if="${param.logout}" class="login-logout">
+            Sesión cerrada correctamente
+        </div>
+
+        <form th:action="@{/login}" method="post">
+
+            <input type="text" name="username" placeholder="Usuario" class="login-input" required>
+
+            <input type="password" name="password" placeholder="Contraseña" class="login-input" required>
+
+            <button type="submit" class="btn-login">Ingresar</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehículos registrados</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/home}">Kilometría</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/usuarios}">Usuarios</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="hero text-center">
+    <h1>Vehículos registrados</h1>
+    <p>Listado completo de vehículos en el sistema</p>
+</section>
+
+<div class="container my-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Precio</th>
+                <th>Kilometraje</th>
+                <th>Tipo</th>
+                <th>Estado</th>
+                <th>Disponible</th>
+                <th>Propietario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="v : ${vehiculos}">
+                <td th:text="${v.idVehiculo}"></td>
+                <td th:text="${v.marca}"></td>
+                <td th:text="${v.modelo}"></td>
+                <td th:text="${v.precio}"></td>
+                <td th:text="${v.kilometraje}"></td>
+                <td th:text="${v.tipo}"></td>
+                <td th:text="${v.estado}"></td>
+                <td th:text="${v.disponible ? 'Sí' : 'No'}"></td>
+                <td th:text="${v.usuario.email}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer class="text-center py-3">
+    © 2025 Kilometría — Todos los derechos reservados
+</footer>
+
+</body>
+</html>

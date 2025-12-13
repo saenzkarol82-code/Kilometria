@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<div class="container my-5">
+
+    <h2 class="section-title text-center">Editar Usuario</h2>
+
+    <form th:action="@{/admin/usuarios/guardar}" th:object="${usuario}" method="post">
+
+        <!-- ID oculto -->
+        <input type="hidden" th:field="*{idUsuario}">
+
+        <label>Nombre</label>
+        <input type="text" th:field="*{nombre}" class="form-control" required>
+
+        <label>Apellido</label>
+        <input type="text" th:field="*{apellido}" class="form-control" required>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}" class="form-control" required>
+
+        <label>Teléfono</label>
+        <input type="text" th:field="*{telefono}" class="form-control">
+
+        <div th:if="${usuario.idUsuario == null}">
+         <label>Contraseña</label>
+         <input type="password" th:field="*{password}" class="form-control" required>
+        </div>
+
+        <label>Rol</label>
+        <select th:field="*{rol}" class="form-control">
+            <option th:each="r : ${roles}" th:value="${r}" th:text="${r}"></option>
+        </select>
+
+        <button type="submit" class="btn btn-primary mt-3">Guardar cambios</button>
+    </form>
+
+</div>
+
+</body>
+</html>

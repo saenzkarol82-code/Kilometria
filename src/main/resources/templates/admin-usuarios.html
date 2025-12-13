@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios registrados</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/home}">Kilometría</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/vehiculos}">Vehículos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="hero text-center">
+    <h1>Usuarios registrados</h1>
+    <p>Listado completo de usuarios en el sistema</p>
+</section>
+
+<div class="container my-5">
+    <a th:href="@{/admin/usuarios/nuevo}" class="btn btn-success">Nuevo Usuario</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Rol</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="u : ${usuarios}">
+                <td th:text="${u.idUsuario}"></td>
+                <td th:text="${u.rol}"></td>
+                <td th:text="${u.nombre}"></td>
+                <td th:text="${u.apellido}"></td>
+                <td th:text="${u.email}"></td>
+                <td th:text="${u.telefono}"></td>
+                <td>
+                 <a th:href="@{'/admin/usuarios/editar/' + ${u.idUsuario}}" class="btn btn-primary btn-sm">Editar</a>
+                 <a th:href="@{'/admin/usuarios/eliminar/' + ${u.idUsuario}}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer class="text-center py-3">
+    © 2025 Kilometría — Todos los derechos reservados
+</footer>
+
+</body>
+</html>

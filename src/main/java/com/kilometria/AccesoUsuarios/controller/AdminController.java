@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
-import com.kilometria.AccesoUsuarios.model.Usuario;
-
-
 
 
 import com.kilometria.AccesoUsuarios.repository.UsuarioRepository;
 import com.kilometria.AccesoUsuarios.repository.VehiculoRepository;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -25,13 +23,18 @@ public class AdminController {
 
     private final VehiculoRepository vehiculoRepository;
     private final UsuarioRepository usuarioRepository;
+    
 
     public AdminController(VehiculoRepository vehicleRepository, UsuarioRepository usuarioRepository) {
         this.vehiculoRepository = vehicleRepository;
         this.usuarioRepository = usuarioRepository;
+       
+    }
 
-
-        
+    @GetMapping("/usuarios")
+     public String listarUsuarios(Model model) {
+     model.addAttribute("usuarios", usuarioRepository.findAll());
+     return "admin-usuarios";
     }
 
     @GetMapping("/vehiculos")
@@ -39,4 +42,7 @@ public class AdminController {
         model.addAttribute("vehiculos", vehiculoRepository.findAll());
         return "admin-vehiculos"; // vista exclusiva admin
     }
+
+    
+
 }

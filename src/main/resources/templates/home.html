@@ -1,37 +1,84 @@
-<section class="hero text-center">
-  <div class="container">
-    <h1 class="fw-bold">Bienvenido, [[${nombre}]] [[${apellido}]]</h1>
-    <p class="lead">Tu rol: [[${rol}]]</p>
-  </div>
-</section>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
 
-<section class="py-5">
-  <div class="container">
-    <h2 class="section-title text-center mb-4">Tu Perfil</h2>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card p-4">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Email:</strong> [[${email}]]</li>
-            <li class="list-group-item"><strong>Teléfono:</strong> [[${telefono}]]</li>
-          </ul>
+    <!-- Tu CSS global -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<!-- NAVBAR (opcional si ya tienes una) -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/home}">Kilometría</a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/vehiculos}">Vehículos</a>
+                    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/usuarios}">Usuarios</a>
+                    
+                </li>
+                <li class="nav-item">
+                <form th:action="@{/logout}" method="post" id="logoutForm"></form>
+                 <a class="nav-link" href="#" onclick="document.getElementById('logoutForm').submit();">
+                  Cerrar sesión
+                 </a>
+                </li>
+
+            </ul>
         </div>
-      </div>
     </div>
-  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero text-center">
+    <h1>Bienvenido a Kilometría</h1>
+    <p>Gestión inteligente de vehículos y usuarios</p>
 </section>
 
-<section class="py-5 text-center">
-  <div class="container">
-    <h2 class="section-title mb-4">Acciones Disponibles</h2>
-    <div th:if="${rol.contains('ADMIN')}">
-      <a href="/admin/dashboard" class="btn btn-primary">Panel de Administración</a>
+<!-- CONTENIDO PRINCIPAL -->
+<div class="container my-5">
+
+    <h2 class="section-title text-center mb-4">Panel principal</h2>
+
+    <div class="row justify-content-center">
+
+        <!-- Card 1 -->
+        <div class="col-md-4 mb-4">
+            <div class="card p-3">
+                <h5 class="card-title">Gestión de Vehículos</h5>
+                <p class="card-text">
+                    Administra, registra y consulta información de los vehículos.
+                </p>
+                <a th:href="@{/admin/vehiculos}" class="btn btn-primary">Ver vehículos</a>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4 mb-4">
+            <div class="card p-3">
+                <h5 class="card-title">Gestión de Usuarios</h5>
+                <p class="card-text">
+                    Controla los usuarios del sistema y sus permisos.
+                </p>
+                <a th:href="@{/admin/usuarios}" class="btn btn-primary">Ver usuarios</a>
+            </div>
+        </div>
+
     </div>
-    <div th:if="${rol.contains('VENDEDOR')}">
-      <a href="/vehiculos/nuevo" class="btn btn-primary">Publicar Vehículo</a>
-    </div>
-    <div th:if="${rol.contains('COMPRADOR')}">
-      <a href="/catalogo" class="btn btn-primary">Explorar Catálogo</a>
-    </div>
-  </div>
-</section>
+</div>
+
+<!-- FOOTER -->
+<footer class="text-center py-3">
+    © 2025 Kilometría — Todos los derechos reservados
+</footer>
+
+</body>
+</html>

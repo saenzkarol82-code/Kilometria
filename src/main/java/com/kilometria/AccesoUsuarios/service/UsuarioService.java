@@ -4,6 +4,9 @@ package com.kilometria.AccesoUsuarios.service;
 
 import com.kilometria.AccesoUsuarios.model.Usuario;
 import com.kilometria.AccesoUsuarios.repository.UsuarioRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,16 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    //enlista usuarios 
+    public List<Usuario> listarTodos() {
+        return usuarioRepository.findAll();
+    }
+
+   public Usuario guardarSinEncriptar(Usuario usuario) {
+     return usuarioRepository.save(usuario);
+   }
+
+
     // Validar credenciales de login
     public Usuario validarCredenciales(String email, String password) {
         Usuario usuario = usuarioRepository.findByEmail(email);
@@ -40,6 +53,11 @@ public class UsuarioService {
     public Usuario buscarPorId(Long idUsuario) {
         return usuarioRepository.findById(idUsuario).orElse(null);
     }
+
+
+    public void eliminar(Long id) { //eliminar usuario 
+        usuarioRepository.deleteById(id);
+    }
 }
 
-        // ALL Auto-generated method stub
+   

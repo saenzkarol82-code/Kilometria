@@ -5,6 +5,8 @@ package com.kilometria.AccesoUsuarios.security;
 
 import com.kilometria.AccesoUsuarios.model.Usuario;
 import com.kilometria.AccesoUsuarios.repository.UsuarioRepository;
+
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,8 +28,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Usuario no encontrado con email: " + email);
         }
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(usuario.getEmail())
+        return User.builder()
+                .username(usuario.getEmail())
                 .password(usuario.getPassword())
                 .roles(usuario.getRol().name()) // usa el Enum Rol
                 .build();
