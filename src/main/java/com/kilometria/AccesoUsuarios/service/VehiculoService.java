@@ -1,14 +1,17 @@
 package com.kilometria.AccesoUsuarios.service;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kilometria.AccesoUsuarios.model.Vehiculo;
 import com.kilometria.AccesoUsuarios.repository.UsuarioRepository;
 import com.kilometria.AccesoUsuarios.repository.VehiculoRepository;
-
 
 @Service
 public class VehiculoService {
@@ -38,4 +41,12 @@ public class VehiculoService {
     public List<Vehiculo> listarPublicados() {
         return vehiculoRepository.findByDisponibleTrue();
     }
+    public List<Vehiculo> listarDisponibles() {
+    return vehiculoRepository.findByDisponibleTrue();
+}
+
+
+   
+
+    
 }

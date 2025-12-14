@@ -11,14 +11,19 @@
 
 <nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand" href="#">Kilometría</a>
+   <a class="navbar-brand" th:href="@{/index}">Kilometría</a>
+   <div th:if="${param.logout}" class="alert alert-success text-center">
+    Sesión cerrada correctamente
+   </div>
+
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
-        <li class="nav-item"><a class="nav-link" href="#catalogo">Catálogo</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/cliente/vehiculos/catalogo}">Catálogo</a></li>
         <li class="nav-item"><a class="nav-link" href="#opiniones">Opiniones</a></li>
         <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
         <!-- Botón de inicio de sesión -->
@@ -36,7 +41,8 @@
     <div class="container">
       <h1 class="display-4 fw-bold">Compra y Venta de Carros</h1>
       <p class="lead">Encuentra el vehículo ideal o vende el tuyo con confianza.</p>
-      <a href="#catalogo" class="btn btn-primary btn-lg mt-3">Ver Catálogo</a>
+      <a th:href="@{/cliente/vehiculos/catalogo}" class="btn btn-primary btn-lg mt-3">Ver Catálogo</a>
+
     </div>
   </section>
 

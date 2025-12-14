@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -18,7 +19,7 @@ public class SecurityConfig {
             
 
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/","/login","/css/**", "/js/**", "/home","/img/**").permitAll()
+                .requestMatchers("/","/index", "/login", "/registro", "/css/**", "/js/**", "/img/**","/cliente/vehiculos/catalogo").permitAll()
                 .requestMatchers("/usuarios/**").hasRole("ADMIN")
                 .requestMatchers("/vehiculos/**").hasRole("USER")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -31,13 +32,16 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login") // Spring maneja el POST /login
                 .defaultSuccessUrl("/home", true)
                 .failureUrl("/login?error=true")
+                
                 .permitAll()
             )
 
             .logout(logout -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/?logout")
-                .permitAll()
+              .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
+              .logoutSuccessUrl("/index?logout")
+              .permitAll()
+
+
             );
 
         return http.build();

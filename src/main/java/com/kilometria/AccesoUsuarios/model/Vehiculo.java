@@ -122,6 +122,30 @@ public class Vehiculo {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    @Column(length = 255)
+     private String imagen1;
+
+    @Column(length = 255)
+    private String imagen2;
+
+    public String getImagen1() {
+    return imagen1;
+    }
+
+    public void setImagen1(String imagen1) {
+    this.imagen1 = imagen1;
+    }
+
+public String getImagen2() {
+    return imagen2;
+}
+
+public void setImagen2(String imagen2) {
+    this.imagen2 = imagen2;
+}
+
+
 }
 
 

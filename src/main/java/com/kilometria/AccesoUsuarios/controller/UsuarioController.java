@@ -6,6 +6,8 @@ import com.kilometria.AccesoUsuarios.repository.*;
 import com.kilometria.AccesoUsuarios.service.UsuarioService;
 import com.kilometria.AccesoUsuarios.service.VehiculoService;
 
+import java.time.LocalDateTime;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,28 +32,46 @@ public class UsuarioController {
     private final PasswordEncoder passwordEncoder;
     private final VehiculoService vehiculoService;
 
-
-   
-
+    @GetMapping({"/", "/index"})
+    public String index() {
+        return "index"; // nombre del archivo index.html en templates
+    }
 
     @GetMapping("/login")
       public String login() {
     return "login"; // login.html en templates este es del boton iniciar sesion 
     }
-    
 
-    @GetMapping("/registro") //accion mostrar el formulario de registro
+    @GetMapping("/registro")
     public String mostrarRegistroForm(Model model) {
-        model.addAttribute("usuario", new Usuario());
-        return "registro"; // registro.html
+    model.addAttribute("usuario", new Usuario()); // objeto vacío para el formulario
+    return "registro"; // nombre del archivo registro.html en templates
     }
 
-    @GetMapping("/catalogo")
-    public String catalogo(Model model) {
-    model.addAttribute("vehiculos", vehiculoService.listarPublicados());
-    return "catalogo";
-    }
+    
+    @PostMapping("/registro/guardar")
+    public String registrarUsuario(@ModelAttribute Usuario usuario, Model model) {
+    try {
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        
 
+        // Asignar rol automáticamente
+        usuario.setRol(RolUsuario.COMPRADOR); // o VENDEDOR, según tu lógica
+
+        usuarioRepository.save(usuario);
+        model.addAttribute("exito", "Usuario registrado correctamente");
+        return "registro";
+    } catch (Exception e) {
+        model.addAttribute("error", "Error al registrar usuario: " + e.getMessage());
+        return "registro";
+    }
+}
+
+
+}
+
+
+   
      
    
 
@@ -77,4 +97,4 @@ public class UsuarioController {
 
 
     
-}
+
