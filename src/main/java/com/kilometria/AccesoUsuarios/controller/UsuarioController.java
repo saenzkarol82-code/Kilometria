@@ -76,27 +76,8 @@ public class UsuarioController {
     }
 }
 
-@GetMapping("/reportes/usuario/{id}")
-public void generarReporteUsuario(@PathVariable Long id, HttpServletResponse response) throws Exception {
-    Usuario usuario = usuarioRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-    // Variables para Thymeleaf
-    Context context = new Context();
-    context.setVariable("usuario", usuario);
 
-    // Renderizar HTML
-    String html = templateEngine.process("reporte-usuario", context);
-
-    // Exportar extensión PDF
-    response.setContentType("application/pdf");
-    response.setHeader("Content-Disposition", "attachment; filename=reporte-usuario.pdf");
-
-    ITextRenderer renderer = new ITextRenderer();
-    renderer.setDocumentFromString(html);
-    renderer.layout();
-    renderer.createPDF(response.getOutputStream());
-}
 
 
 

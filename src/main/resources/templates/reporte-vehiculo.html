@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Reporte Vehículo</title>
-    <style>
+    <style type="text/css">
         body { font-family: Arial, sans-serif; margin: 40px; color: #333; }
         h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
@@ -14,18 +15,14 @@
 <body>
     <h1>Reporte de Vehículo</h1>
     <table>
-        <tr><th>ID</th><td th:text="${vehiculo.idVehiculo}"></td></tr>
-        <tr><th>Marca</th><td th:text="${vehiculo.marca}"></td></tr>
-        <tr><th>Modelo</th><td th:text="${vehiculo.modelo}"></td></tr>
-        <tr><th>Precio</th><td th:text="${vehiculo.precio}"></td></tr>
-        <tr><th>Kilometraje</th><td th:text="${vehiculo.kilometraje}"></td></tr>
-        <tr><th>Tipo</th><td th:text="${vehiculo.tipo}"></td></tr>
-        <tr><th>Estado</th><td th:text="${vehiculo.estado}"></td></tr>
-        <tr><th>Descripción</th><td th:text="${vehiculo.descripcion}"></td></tr>
-        <tr><th>Disponible</th><td th:text="${vehiculo.disponible}"></td></tr>
-        <tr><th>Propietario</th><td th:text="${vehiculo.usuario.email}"></td></tr>
-        <tr><th>Imagen 1</th><td th:text="${vehiculo.imagen1}"></td></tr>
-        <tr><th>Imagen 2</th><td th:text="${vehiculo.imagen2}"></td></tr>
+        <tr><th>ID</th><td th:text="${vehiculo.idVehiculo}">[ID]</td></tr>
+        <tr><th>Marca</th><td th:text="${vehiculo.marca}">[Marca]</td></tr>
+        <tr><th>Modelo</th><td th:text="${vehiculo.modelo}">[Modelo]</td></tr>
+        <tr><th>Precio</th><td th:text="${vehiculo.precio}">[Precio]</td></tr>
+        <tr><th>Kilometraje</th><td th:text="${vehiculo.kilometraje}">[Kilometraje]</td></tr>
+        <tr><th>Tipo</th><td th:text="${vehiculo.tipo}">[Tipo]</td></tr>
+        <tr><th>Estado</th><td th:text="${vehiculo.estado}">[Estado]</td></tr>
+        <tr><th>Descripción</th><td th:text="${vehiculo.descripcion}">[Descripción]</td></tr>
     </table>
 </body>
 </html>

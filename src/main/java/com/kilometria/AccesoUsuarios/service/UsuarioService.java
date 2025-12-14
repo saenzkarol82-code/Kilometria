@@ -6,6 +6,7 @@ import com.kilometria.AccesoUsuarios.model.Usuario;
 import com.kilometria.AccesoUsuarios.repository.UsuarioRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -58,6 +59,33 @@ public class UsuarioService {
     public void eliminar(Long id) { //eliminar usuario 
         usuarioRepository.deleteById(id);
     }
+
+    public List<Usuario> buscarPorFiltros(Long id, String rol, String email) {
+    List<Usuario> todos = usuarioRepository.findAll();
+
+    return todos.stream()
+        .filter(u -> id == null || u.getIdUsuario().equals(id))
+        .filter(u -> rol == null || u.getRol().name().equalsIgnoreCase(rol))
+        .filter(u -> email == null || u.getEmail().toLowerCase().contains(email.toLowerCase()))
+        .collect(Collectors.toList());
+}
+
+   public List<Usuario> buscarPorQuery(String query) {
+    List<Usuario> todos = usuarioRepository.findAll();
+
+    return todos.stream()
+        .filter(u -> {
+            if (query.matches("\\d+")) {
+                return u.getIdUsuario().equals(Long.parseLong(query));
+            }
+            if (u.getRol().name().equalsIgnoreCase(query)) {
+                return true;
+            }
+            return u.getEmail().toLowerCase().contains(query.toLowerCase());
+        })
+        .collect(Collectors.toList());
+}
+
 }
 
    

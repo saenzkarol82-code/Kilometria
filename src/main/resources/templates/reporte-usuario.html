@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Reporte Usuario</title>
-    <style>
+    <style type="text/css">
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
@@ -36,27 +37,27 @@
     <table>
         <tr>
             <th>ID</th>
-            <td th:text="${usuario.idUsuario}"></td>
+            <td th:text="${usuario.idUsuario}">[ID]</td>
         </tr>
         <tr>
             <th>Nombre</th>
-            <td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.nombre}">[Nombre]</td>
         </tr>
         <tr>
             <th>Apellido</th>
-            <td th:text="${usuario.apellido}"></td>
+            <td th:text="${usuario.apellido}">[Apellido]</td>
         </tr>
         <tr>
             <th>Email</th>
-            <td th:text="${usuario.email}"></td>
+            <td th:text="${usuario.email}">[Email]</td>
         </tr>
         <tr>
             <th>Teléfono</th>
-            <td th:text="${usuario.telefono}"></td>
+            <td th:text="${usuario.telefono}">[Teléfono]</td>
         </tr>
         <tr>
             <th>Rol</th>
-            <td th:text="${usuario.rol}"></td>
+            <td th:text="${usuario.rol}">[Rol]</td>
         </tr>
     </table>
 </body>

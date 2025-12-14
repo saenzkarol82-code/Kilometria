@@ -28,6 +28,16 @@
 
 <div class="container my-5">
     <a th:href="@{/admin/vehiculos/nuevo}" class="btn btn-success">Nuevo Vehículo</a>
+    <br>
+    <form th:action="@{/admin/vehiculos/buscar}" method="get" class="row g-3 mb-4">
+    <div class="col-md-9">
+        <input type="text" name="query" class="form-control" placeholder="Buscar por ID, Marca, Modelo o Propietario">
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-primary w-100">Buscar</button>
+    </div>
+</form>
+
 
     <table class="table table-striped">
         <thead>
@@ -58,6 +68,9 @@
                 <td>
                   <a th:href="@{'/admin/vehiculos/editar/' + ${v.idVehiculo}}" class="btn btn-primary btn-sm">Editar</a>
                   <a th:href="@{'/admin/vehiculos/eliminar/' + ${v.idVehiculo}}" class="btn btn-danger btn-sm">Eliminar</a>
+                  <a th:href="@{'/admin/vehiculos/reporte/' + ${v.idVehiculo}}" class="btn btn-sm btn-info">PDF</a>
+
+
                 </td>
 
             </tr>

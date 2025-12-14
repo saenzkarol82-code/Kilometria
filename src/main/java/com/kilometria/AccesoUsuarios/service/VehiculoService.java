@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -50,10 +51,46 @@ public class VehiculoService {
     }
     public List<Vehiculo> listarDisponibles() {
     return vehiculoRepository.findByDisponibleTrue();
+
+    
+    
 }
+
+
+
+    public List<Vehiculo> buscarPorQuery(String query) {
+        List<Vehiculo> todos = vehiculoRepository.findAll();
+
+        return todos.stream()
+            .filter(v -> {
+                // Buscar por ID si el query es numérico
+                if (query.matches("\\d+")) {
+                    return v.getIdVehiculo().equals(Long.parseLong(query));
+                }
+                // Buscar por marca
+                if (v.getMarca() != null && v.getMarca().toLowerCase().contains(query.toLowerCase())) {
+                    return true;
+                }
+                // Buscar por modelo
+                if (v.getModelo() != null && v.getModelo().toLowerCase().contains(query.toLowerCase())) {
+                    return true;
+                }
+                // Buscar por propietario (email del usuario asociado)
+                if (v.getUsuario() != null && v.getUsuario().getEmail() != null &&
+                    v.getUsuario().getEmail().toLowerCase().contains(query.toLowerCase())) {
+                    return true;
+                }
+                return false;
+            })
+            .collect(Collectors.toList());
+    }
+}
+
+
+
 
 
    
 
     
-}
+

@@ -26,6 +26,7 @@
         <li class="nav-item"><a class="nav-link" th:href="@{/cliente/vehiculos/catalogo}">Catálogo</a></li>
         <li class="nav-item"><a class="nav-link" href="#opiniones">Opiniones</a></li>
         <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://www.movilidadbogota.gov.co/web/">Noticias</a></li>
         <!-- Botón de inicio de sesión -->
         <li class="nav-item">
           <a class="btn btn-primary ms-3"  th:href="@{/login}">Iniciar Sesión</a>
@@ -53,21 +54,21 @@
       <div class="row g-4">
         <div class="col-md-4">
           <div class="card h-100 text-center p-3">
-            <img src="" class="logo-vehiculo mb-3" alt="Comprar">
+            <img src="https://edosbornphoto.com/wp-content/uploads/2021/12/auto-comprando.jpg" class="logo-vehiculo mb-3" alt="Comprar">
             <h5 class="card-title">Compra Segura</h5>
             <p class="card-text">Encuentra carros verificados con historial claro y precios competitivos.</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card h-100 text-center p-3">
-            <img src="" class="logo-vehiculo mb-3" alt="Vender">
+            <img src="https://totalrenting.es/wp-content/uploads/2022/10/Los-plazos-de-entrega-de-la-compra-de-un-coche-son-mas-largos-que-los-del-renting-1.jpg" class="logo-vehiculo mb-3" alt="Vender">
             <h5 class="card-title">Venta Rápida</h5>
             <p class="card-text">Publica tu vehículo y llega a miles de compradores potenciales.</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card h-100 text-center p-3">
-            <img src="" class="logo-vehiculo mb-3" alt="Financiar">
+            <img src="https://motormania.com.mx/wp-content/uploads/2022/07/como-funciona-un-financiamiento-de-auto-scaled-1.jpg" class="logo-vehiculo mb-3" alt="Financiar">
             <h5 class="card-title">Financiación</h5>
             <p class="card-text">Opciones de crédito flexibles para que estrenes carro sin complicaciones.</p>
           </div>
@@ -83,11 +84,31 @@
       <div class="row g-4">
         <div class="col-md-4">
           <div class="card h-100">
-            <img src="" class="card-img-top" alt="Carro 1">
+            <!--<img src="" class="card-img-top" alt="Carro 1">-->
             <div class="card-body">
               <h5 class="card-title">Toyota Corolla 2020</h5>
               <p class="card-text">Kilometraje: 25,000 km<br>Precio: $55,000,000 COP</p>
-              <a href="#" class="btn btn-primary">Ver más</a>
+              <a th:href="@{/cliente/vehiculos/catalogo}" class="btn btn-primary">Ver más</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <!--<img src="" class="card-img-top" alt="Carro 1">-->
+            <div class="card-body">
+              <h5 class="card-title">Audi Q7 Mhve Sline 2024</h5>
+              <p class="card-text">Kilometraje: 25,000 km<br>Precio: $27,000,000 COP</p>
+              <a th:href="@{/cliente/vehiculos/catalogo}" class="btn btn-primary">Ver más</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <!--<img src="" class="card-img-top" alt="Carro 1">-->
+            <div class="card-body">
+              <h5 class="card-title">Chevrolet Sail 1.4 Ls 2014</h5>
+              <p class="card-text">Kilometraje: 251,000 km<br>Precio: $26,500,000 COP</p>
+              <a th:href="@{/cliente/vehiculos/catalogo}" class="btn btn-primary">Ver más</a>
             </div>
           </div>
         </div>
