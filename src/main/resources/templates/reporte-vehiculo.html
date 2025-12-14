@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte Vehículo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; color: #333; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 12px; text-align: left; }
+        th { background-color: #3498db; color: #fff; }
+    </style>
+</head>
+<body>
+    <h1>Reporte de Vehículo</h1>
+    <table>
+        <tr><th>ID</th><td th:text="${vehiculo.idVehiculo}"></td></tr>
+        <tr><th>Marca</th><td th:text="${vehiculo.marca}"></td></tr>
+        <tr><th>Modelo</th><td th:text="${vehiculo.modelo}"></td></tr>
+        <tr><th>Precio</th><td th:text="${vehiculo.precio}"></td></tr>
+        <tr><th>Kilometraje</th><td th:text="${vehiculo.kilometraje}"></td></tr>
+        <tr><th>Tipo</th><td th:text="${vehiculo.tipo}"></td></tr>
+        <tr><th>Estado</th><td th:text="${vehiculo.estado}"></td></tr>
+        <tr><th>Descripción</th><td th:text="${vehiculo.descripcion}"></td></tr>
+        <tr><th>Disponible</th><td th:text="${vehiculo.disponible}"></td></tr>
+        <tr><th>Propietario</th><td th:text="${vehiculo.usuario.email}"></td></tr>
+        <tr><th>Imagen 1</th><td th:text="${vehiculo.imagen1}"></td></tr>
+        <tr><th>Imagen 2</th><td th:text="${vehiculo.imagen2}"></td></tr>
+    </table>
+</body>
+</html>

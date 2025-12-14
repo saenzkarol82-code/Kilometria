@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kilometria.AccesoUsuarios.model.Estado;
 import com.kilometria.AccesoUsuarios.model.Tipo;
@@ -51,11 +53,22 @@ public class VehiculoAdminController {
         return "vehiculo-form"; // formulario para publicar
     }
 
-    @PostMapping("/guardar")
-    public String guardar(@ModelAttribute Vehiculo vehiculo) {
-        vehiculoService.guardar(vehiculo);
-        return "redirect:/admin/vehiculos";
+    @PostMapping("/cliente/vehiculos/guardar")
+     public String guardar(@ModelAttribute Vehiculo vehiculo,
+                      @RequestParam("imagen1") MultipartFile imagen1,
+                      @RequestParam("imagen2") MultipartFile imagen2) {
+     if (!imagen1.isEmpty()) {
+        vehiculo.setImagen1(imagen1.getOriginalFilename());
+        // aquí deberías guardar físicamente el archivo en disco o nube
     }
+    if (!imagen2.isEmpty()) {
+        vehiculo.setImagen2(imagen2.getOriginalFilename());
+    }
+
+    vehiculoService.guardar(vehiculo);
+    return "redirect:/admin/vehiculos";
+    }
+
 
     @GetMapping("/editar/{id}")
       public String editar(@PathVariable Long id, Model model) {

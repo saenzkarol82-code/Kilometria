@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kilometria.AccesoUsuarios.model.Usuario;
 import com.kilometria.AccesoUsuarios.model.Vehiculo;
 import com.kilometria.AccesoUsuarios.repository.UsuarioRepository;
 import com.kilometria.AccesoUsuarios.repository.VehiculoRepository;
@@ -17,9 +18,11 @@ import com.kilometria.AccesoUsuarios.repository.VehiculoRepository;
 public class VehiculoService {
 
     private final VehiculoRepository vehiculoRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    public VehiculoService(VehiculoRepository vehiculoRepository) {
+    public VehiculoService(VehiculoRepository vehiculoRepository, UsuarioRepository usuarioRepository) {
         this.vehiculoRepository = vehiculoRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<Vehiculo> listarTodos() {
@@ -31,8 +34,12 @@ public class VehiculoService {
     }
 
     public void guardar(Vehiculo vehiculo) {
-        vehiculoRepository.save(vehiculo);
-    }
+    Usuario propietario = usuarioRepository.findById(vehiculo.getUsuario().getIdUsuario())
+        .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    vehiculo.setUsuario(propietario);
+    vehiculoRepository.save(vehiculo);
+}
+
 
     public void eliminar(Long id) {
         vehiculoRepository.deleteById(id);

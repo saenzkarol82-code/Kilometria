@@ -96,12 +96,12 @@
 
         <div class="mb-3">
             <label class="form-label">Imagen 1</label>
-            <input type="file" name="imagen1" class="form-control">
+            <input type="file" th:field="*{imagen1}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">Imagen 2</label>
-            <input type="file" name="imagen2" class="form-control">
+            <input type="file" th:field="*{imagen2}" class="form-control">
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Guardar</button>

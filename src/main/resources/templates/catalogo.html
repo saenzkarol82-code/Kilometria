@@ -65,7 +65,7 @@
     <div class="row" th:if="${!#lists.isEmpty(vehiculos)}">
         <div class="col-md-4 mb-4" th:each="v : ${vehiculos}">
             <div class="card h-100 shadow-sm">
-                <img th:if="${v.imagen1 != null}" th:src="${v.imagen1}" class="card-img-top" alt="Imagen vehículo">
+                <!--<img th:if="${v.imagen1 != null}" th:src="${v.imagen1}" class="card-img-top" alt="Imagen vehículo">-->
                 <div class="card-body">
                     <h5 class="card-title" th:text="|${v.marca} ${v.modelo}|"></h5>
                     <p class="card-text">
@@ -74,7 +74,7 @@
                         <strong>Tipo:</strong> <span th:text="${v.tipo}"></span><br>
                         <strong>Estado:</strong> <span th:text="${v.estado}"></span>
                     </p>
-                    <a href="#" class="btn btn-primary">Ver más</a>
+                    <a th:href="@{'/vehiculos/' + ${v.idVehiculo}}" class="btn btn-info">Ver más</a>
                 </div>
             </div>
         </div>
